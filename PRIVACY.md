@@ -1,5 +1,3 @@
-[中文版](PRIVACY.zh-CN.md)
-
 # Privacy Policy
 
 **Effective date:** July 16, 2026

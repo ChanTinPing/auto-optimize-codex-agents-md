@@ -1,5 +1,3 @@
-[中文版条款](TERMS.zh-CN.md)
-
 # Terms of Use
 
 Effective date: July 16, 2026

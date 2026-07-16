@@ -1,5 +1,3 @@
-[中文支持说明](SUPPORT.zh-CN.md)
-
 # Support
 
 Support for Auto-Optimize Codex AGENTS.md is provided on a best-effort basis for the latest version on the `main` branch.
