@@ -233,6 +233,8 @@ def update_state(
         },
     )
     state["processed_record_ids"] = sorted(set(state.get("processed_record_ids", [])) | checkpoint_record_ids)
+    if checkpoint_record_ids and plan.get("review_protocol") == "project-then-global-v1":
+        state["pending_global_candidates"] = dict(plan.get("pending_global_candidates", {}))
     if checkpoint_record_ids and isinstance(checkpoint_batch, dict):
         indexed = {
             str(item["record_id"]): item
@@ -411,6 +413,15 @@ def validate_plan_structure(plan: dict[str, Any]) -> str | None:
         return "plan decisions must be a list"
     if plan.get("record_ids") and not top_decisions:
         return "a non-empty batch plan requires at least one explicit decision, including no-op"
+    if plan.get("review_protocol") == "project-then-global-v1":
+        pending_candidates = plan.get("pending_global_candidates")
+        if not isinstance(pending_candidates, dict):
+            return "project-then-global plan has invalid pending global candidates"
+        if any(
+            not isinstance(candidate, dict) or str(candidate.get("candidate_id") or "") != str(identifier)
+            for identifier, candidate in pending_candidates.items()
+        ):
+            return "pending global candidate keys must match candidate_id values"
     edited_acceptance = plan.get("edited_acceptance", False)
     if not isinstance(edited_acceptance, bool):
         return "plan edited_acceptance must be a boolean"

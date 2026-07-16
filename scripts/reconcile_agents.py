@@ -572,6 +572,19 @@ def reconcile(decisions_value: Any, batch: dict[str, Any], home: Path, mode: str
         raise ReconcileError("batch quota gate is blocked or unknown")
     if isinstance(decisions_value, dict) and "decisions" not in decisions_value:
         raise ReconcileError("decision object must contain a decisions array")
+    aggregation_state: dict[str, Any] | None = None
+    if isinstance(decisions_value, dict) and decisions_value.get("review_protocol") == "project-then-global-v1":
+        pending_candidates = decisions_value.get("pending_global_candidates")
+        if not isinstance(pending_candidates, dict):
+            raise ReconcileError("completed global aggregation requires pending_global_candidates")
+        for identifier, candidate in pending_candidates.items():
+            if not isinstance(candidate, dict) or str(candidate.get("candidate_id") or "") != str(identifier):
+                raise ReconcileError("pending global candidate keys must match candidate_id values")
+            if not str(candidate.get("instruction") or "").strip() or not str(candidate.get("semantic_scope") or "").strip():
+                raise ReconcileError(f"pending global candidate {identifier} is incomplete")
+            if not isinstance(candidate.get("sources"), list) or not candidate["sources"]:
+                raise ReconcileError(f"pending global candidate {identifier} has no sources")
+        aggregation_state = pending_candidates
     raw_decisions = decisions_value.get("decisions") if isinstance(decisions_value, dict) else decisions_value
     if not isinstance(raw_decisions, list):
         raise ReconcileError("decisions must be a JSON array or an object containing decisions")
@@ -662,7 +675,7 @@ def reconcile(decisions_value: Any, batch: dict[str, Any], home: Path, mode: str
         )
 
     assign_selection_numbers(decisions)
-    return {
+    plan = {
         "version": 1,
         "mode": mode,
         "codex_home": str(home),
@@ -682,6 +695,10 @@ def reconcile(decisions_value: Any, batch: dict[str, Any], home: Path, mode: str
         "targets": targets,
         "errors": decision_errors,
     }
+    if aggregation_state is not None:
+        plan["review_protocol"] = "project-then-global-v1"
+        plan["pending_global_candidates"] = aggregation_state
+    return plan
 
 
 def main() -> int:
@@ -704,6 +721,11 @@ def main() -> int:
         parser.error("quota result is blocked or unknown; refusing to reconcile")
     if quota is not None and args.reasoning_effort != "high":
         parser.error("Scheduled runs require --reasoning-effort high")
+    if batch.get("record_ids") and (
+        not isinstance(decisions, dict)
+        or decisions.get("review_protocol") != "project-then-global-v1"
+    ):
+        parser.error("run aggregate_global_candidates.py prepare and finalize before reconciliation")
     try:
         result = reconcile(decisions, batch, codex_home(args.codex_home), args.mode, state)
     except ReconcileError as error:

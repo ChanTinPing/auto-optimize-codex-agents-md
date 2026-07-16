@@ -37,7 +37,27 @@ A single feedback event may qualify; repetition is not required. It must still i
 
 Pass every batch through `prepare_review_chunks.py`, which splits it by project and configured record and character limits, then review every chunk. All batch sizes follow the same path; each project stays in one chunk unless a limit requires more. Process the entire manifest rather than only globally ranked, keyword-matched, or sampled records. After merging decisions, continue to use the source batch as the reconcile, apply, and checkpoint unit. Maintain coverage per project. Split explicit corrections, dissatisfaction, acceptance criteria, and withdrawal requests into independent semantic atoms. Each atom must map to a candidate, an existing rule that covers it exactly, or a specific no-op reason. A partially related rule does not cover all other feedback in that project, and topical similarity is not semantic equivalence.
 
-Every decision, including no-op and `needs_evidence`, must contain trusted `evidence_refs`, a valid `project | global` target, and an accurate project root when applicable. A no-op must also contain a specific `explanation`. Every record in the batch must be referenced directly by at least one decision or indirectly through a trusted turn or event reference for that record. Reconcile and apply both enforce coverage; any omission blocks checkpointing for the entire batch.
+Every project decision, including no-op and `needs_evidence`, must contain trusted `evidence_refs`, an accurate project root, and a separate `global_disposition`. A record with no trusted project root may instead use a global decision with unscoped evidence. The disposition is `candidate`, `project-only`, or `already-global` and requires a specific reason. A candidate also supplies the proposed global instruction, semantic scope, and whether the user explicitly made its scope global; an unscoped global-context candidate must set that flag to true. Local action and global applicability are independent: an exact project rule can make the project action a no-op while the same history remains evidence for a global candidate. A no-op must also contain a specific `explanation`. Every record in the batch must be referenced directly by at least one decision or indirectly through a trusted turn or event reference for that record. Reconcile and apply both enforce coverage; any omission blocks checkpointing for the entire batch.
+
+After every project chunk is complete, aggregate all structured global candidates across projects before reconciliation. Include unresolved candidates carried from earlier incremental runs. Every candidate must receive exactly one `promote`, `keep`, `reject`, or `already-global` outcome. Implicit global promotion requires evidence from at least two distinct project roots; one explicit global instruction may enter Suggest from one project. Keep a single-project implicit candidate in state so later evidence from another project can complete the cross-project signal. Project-level no-op never skips or settles this global pass.
+
+Return the global review in this shape. Include `decision` only for `promote`; it must be a mutating global decision. The finalizer derives its evidence and source projects from the referenced candidates rather than trusting model-written provenance.
+
+```json
+{
+  "groups": [
+    {
+      "candidate_ids": ["G-..."],
+      "outcome": "promote | keep | reject | already-global",
+      "decision": {
+        "action": "add | merge | narrow | replace | remove",
+        "target": "global",
+        "instruction": "global rule"
+      }
+    }
+  ]
+}
+```
 
 Prefer instructions of this form:
 
@@ -78,7 +98,14 @@ Return a JSON array. Use this shape for each decision:
   "restore_tombstone_ids": [],
   "override_prior_rejection": false,
   "override_rejection_ids": [],
-  "supersedes_decision_id": null
+  "supersedes_decision_id": null,
+  "global_disposition": {
+    "status": "candidate | project-only | already-global",
+    "instruction": "global candidate only",
+    "semantic_scope": "global candidate only",
+    "reason": "specific classification reason",
+    "explicit_global_intent": false
+  }
 }
 ```
 
