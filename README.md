@@ -25,7 +25,7 @@ Auto is designed for scheduled incremental maintenance without item-by-item conf
 
 ## Boundaries and safety
 
-This Skill learns only durable Codex behavioral preferences. It does not export conversations, manage general session history, or generate workflow Skills. It treats only genuine user input and the Assistant's final responses as evidence, preventing injected context, reasoning, tool output, or subagent content from being mistaken for user preferences. When writing, it modifies only its own managed block and preserves the rest of `AGENTS.md`. Project scope is derived only from trusted session metadata, and writes are refused when managed markers are malformed or the target is a symbolic link. Original conversation history always remains read-only.
+This Skill learns only durable Codex behavioral preferences. It does not provide a standalone transcript-export feature, manage general session history, or generate workflow Skills. It treats only genuine user input and the Assistant's final responses as primary evidence, preventing injected context, reasoning, tool output, or subagent content from being mistaken for user preferences. When writing, it modifies only its own managed block and preserves the rest of `AGENTS.md`. Project scope is derived only from trusted session metadata, and writes are refused when managed markers are malformed or the target is a symbolic link. Original conversation history always remains read-only. See the [Privacy Policy](PRIVACY.md) for local artifacts and Codex processing details.
 
 ## Requirements
 
@@ -51,3 +51,10 @@ agents/openai.yaml         Codex UI metadata
 references/                Session schema, decision policy, and scheduling guidance
 scripts/                   Deterministic scanning, reconciliation, and application tools
 ```
+
+## Policies and support
+
+- [Privacy Policy](PRIVACY.md)
+- [Terms of Use](TERMS.md)
+- [Support](SUPPORT.md)
+- [Security](SECURITY.md)
