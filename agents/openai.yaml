@@ -1,4 +1,4 @@
 interface:
-  display_name: "自动优化 Codex AGENTS.md"
-  short_description: "从历史反馈中建议或应用项目及全局 AGENTS.md 约束"
-  default_prompt: "使用 $auto-optimize-codex-agents-md。"
+  display_name: "Auto-Optimize Codex AGENTS.md"
+  short_description: "Turn Codex feedback into durable AGENTS.md rules"
+  default_prompt: "Use $auto-optimize-codex-agents-md to review recent Codex sessions and suggest durable AGENTS.md improvements."
