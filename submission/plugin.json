@@ -1,5 +1,5 @@
 {
-  "name": "auto-preference-learner",
+  "name": "auto-optimize-codex-agents-md",
   "version": "1.0.1",
   "description": "Learn durable Codex preferences from session feedback and retain them as scoped, reviewable AGENTS.md improvements.",
   "author": {
