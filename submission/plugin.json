@@ -29,6 +29,8 @@
     "websiteURL": "https://github.com/ChanTinPing/auto-optimize-codex-agents-md",
     "privacyPolicyURL": "https://github.com/ChanTinPing/auto-optimize-codex-agents-md/blob/main/PRIVACY.md",
     "termsOfServiceURL": "https://github.com/ChanTinPing/auto-optimize-codex-agents-md/blob/main/TERMS.md",
+    "composerIcon": "./assets/logo.png",
+    "logo": "./assets/logo.png",
     "defaultPrompt": "Review my recent Codex sessions and suggest durable project or global AGENTS.md improvements."
   }
 }
