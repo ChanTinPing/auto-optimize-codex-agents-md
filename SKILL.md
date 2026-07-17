@@ -4,7 +4,7 @@ description: Mine local Codex active and archived session history for durable us
 ---
 # Auto-Optimize Codex AGENTS.md
 
-Extract durable user corrections, acceptance standards, communication preferences, and safety boundaries from the user's active and archived Codex session history, then organize them as project or global rules in managed `AGENTS.md` blocks. Use user input and Assistant final answers as the primary material and produce a reviewable Suggest result first. Write only after the user accepts a Suggest or explicitly enables Auto mode; never promote Suggest to Auto. Do not export transcripts, mine workflow Skills, or modify unmanaged `AGENTS.md` content.
+Extract durable user corrections, acceptance standards, communication preferences, and safety boundaries from the user's active and archived Codex session history, then organize them as project or global rules in managed `AGENTS.md` blocks. Use user input and Assistant final answers as the primary material and produce a reviewable Suggest result first. Write only after the user accepts a Suggest or explicitly enables Auto mode; never promote Suggest to Auto. Do not use this Skill to export transcripts, mine workflow Skills, or modify unmanaged `AGENTS.md` content. When a broader request is legitimate but outside this Skill's purpose, explain the boundary and route that part to an appropriate capability instead of treating it as preference mining.
 
 ## What to Read
 

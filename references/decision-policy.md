@@ -20,7 +20,7 @@ Define how to judge historical feedback as an acceptable project or global `AGEN
 
 Use as few instructions as possible while keeping them accurate and precisely scoped so future Codex behavior better matches the user's stable expectations. Prioritize aesthetic and quality preferences, acceptance criteria, communication habits, behavioral boundaries, safety and authorization preferences, and stable cross-task habits.
 
-Do not create or update workflow Skills from historical feedback. Do not proactively govern ordinary intermediate methods.
+Do not create or update workflow Skills from historical feedback. Do not proactively govern ordinary intermediate methods. This is a boundary of this Skill, not a Codex-wide refusal: route an explicit workflow-Skill request to an appropriate creation capability.
 
 ## Candidate Gate
 
