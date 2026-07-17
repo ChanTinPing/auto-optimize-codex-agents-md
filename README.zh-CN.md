@@ -4,7 +4,7 @@
 
 下载本 Skill 后，可以单独开启一个新对话（或新建一个专门项目），告诉 Codex“请根据此 Skill 优化 `AGENTS.md`”。Codex 会挖掘历史记录并给出带编号的建议；你只需说明接受哪些建议，它便会自动完成相应优化。首次整理完成后，还可以让 Codex 配置定时任务，持续挖掘新增的历史记录并提出增量改进。
 
-# Auto-Optimize Codex AGENTS.md
+# Auto Preference Learner
 
 ## 功能
 
@@ -38,7 +38,7 @@ Auto 适合定时执行无需逐项确认的增量维护，只有用户明确启
 安装为用户级 Skill：
 
 ```bash
-git clone https://github.com/ChanTinPing/auto-optimize-codex-agents-md.git ~/.agents/skills/auto-optimize-codex-agents-md
+git clone https://github.com/ChanTinPing/auto-optimize-codex-agents-md.git ~/.agents/skills/auto-preference-learner
 ```
 
 Codex 通常会自动检测 Skill 变更。如果没有出现，请重启 Codex。

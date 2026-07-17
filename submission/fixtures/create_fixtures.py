@@ -180,10 +180,10 @@ def create_case_4(root: Path) -> None:
     initialize_project(
         project,
         "# Project instructions\n\n"
-        "<!-- auto-optimize-codex-agents-md:start -->\n"
+        "<!-- auto-preference-learner:start -->\n"
         "## Learned working preferences\n\n"
         "- Always run the full end-to-end suite after every documentation change.\n"
-        "<!-- auto-optimize-codex-agents-md:end -->\n",
+        "<!-- auto-preference-learner:end -->\n",
     )
     write_session(
         case / "codex-home",

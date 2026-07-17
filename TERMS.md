@@ -2,7 +2,7 @@
 
 Effective date: July 16, 2026
 
-These terms describe Auto-Optimize Codex AGENTS.md (the “Skill”), published by ChanTinPing, and the Publisher-maintained listing and support channels. The Skill's source code and documentation are licensed under the MIT License as described below.
+These terms describe Auto Preference Learner (the “Skill”), published by ChanTinPing, and the Publisher-maintained listing and support channels. The Skill's source code and documentation are licensed under the MIT License as described below.
 
 ## Permission to use
 

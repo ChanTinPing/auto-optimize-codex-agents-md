@@ -4,7 +4,7 @@ When using Codex, we often see it miss things that feel obvious to us: it may ru
 
 After downloading the Skill, start a separate conversation (or create a dedicated project) and tell Codex, “Use this Skill to optimize my `AGENTS.md`.” Codex will mine your conversation history and present numbered suggestions. Tell it which suggestions you want to accept, and it will apply the corresponding improvements for you. Once the initial review is complete, you can also ask Codex to schedule recurring maintenance that mines new history and proposes incremental improvements.
 
-# Auto-Optimize Codex AGENTS.md
+# Auto Preference Learner
 
 ## Features
 
@@ -38,7 +38,7 @@ This Skill learns only durable Codex behavioral preferences. It does not provide
 Install it as a user-scoped Skill:
 
 ```bash
-git clone https://github.com/ChanTinPing/auto-optimize-codex-agents-md.git ~/.agents/skills/auto-optimize-codex-agents-md
+git clone https://github.com/ChanTinPing/auto-optimize-codex-agents-md.git ~/.agents/skills/auto-preference-learner
 ```
 
 Codex normally detects Skill changes automatically. Restart Codex if the Skill does not appear.

@@ -11,9 +11,9 @@ from pathlib import Path
 from typing import Any, Iterable, Iterator
 
 
-START_MARKER = "<!-- auto-optimize-codex-agents-md:start -->"
-END_MARKER = "<!-- auto-optimize-codex-agents-md:end -->"
-STATE_DIR_NAME = "auto-optimize-codex-agents-md"
+START_MARKER = "<!-- auto-preference-learner:start -->"
+END_MARKER = "<!-- auto-preference-learner:end -->"
+STATE_DIR_NAME = "auto-preference-learner"
 
 
 def codex_home(value: str | None = None) -> Path:

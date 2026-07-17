@@ -3,8 +3,8 @@
 ## Listing
 
 - **Submission type:** Skills only
-- **Plugin name:** Auto-Optimize Codex AGENTS.md
-- **Short description:** Turn durable Codex feedback into scoped, reviewable `AGENTS.md` improvements.
+- **Plugin name:** Auto Preference Learner
+- **Short description:** Learn and retain preferences
 - **Website:** https://github.com/ChanTinPing/auto-optimize-codex-agents-md
 - **Support:** https://github.com/ChanTinPing/auto-optimize-codex-agents-md/blob/main/SUPPORT.md
 - **Privacy:** https://github.com/ChanTinPing/auto-optimize-codex-agents-md/blob/main/PRIVACY.md

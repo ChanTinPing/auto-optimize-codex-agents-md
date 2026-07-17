@@ -15,7 +15,7 @@ Choose the narrowest permissions that can read `$CODEX_HOME` and access historic
 ## Durable Prompt
 
 ```text
-Use $auto-optimize-codex-agents-md to run the daily incremental AGENTS.md memory review in Suggest mode.
+Use $auto-preference-learner to run the daily incremental AGENTS.md memory review in Suggest mode.
 
 First run the bundled seven-day quota preflight. If the result is blocked or unknown, stop immediately and report only the reason. Otherwise scan active and archived local Codex sessions, build only unprocessed user/final-answer records, review every bounded chunk from the bundled chunk preparer, request only minimal transcript evidence when needed, reconcile the combined durable behavior-memory decisions with managed project-root and global AGENTS.md blocks, and record a reviewable Suggest report with complete diffs. Show reviewable choices only as consecutive numbers such as 1, 2, and 3; keep stable decision IDs internal. Do not modify any target AGENTS.md in Suggest mode. Never switch to Auto unless the user explicitly changes the mode.
 ```

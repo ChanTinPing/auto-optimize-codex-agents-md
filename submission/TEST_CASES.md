@@ -18,7 +18,7 @@ Replace `<fixtures>` below with the absolute path to `.test-tmp/submission-fixtu
 
 **User prompt**
 
-> Use `$auto-optimize-codex-agents-md` in Suggest mode. Review only the synthetic history under `<fixtures>/case-1-project-suggest/codex-home`, and suggest durable improvements for its project. Do not modify any `AGENTS.md` yet.
+> Use `$auto-preference-learner` in Suggest mode. Review only the synthetic history under `<fixtures>/case-1-project-suggest/codex-home`, and suggest durable improvements for its project. Do not modify any `AGENTS.md` yet.
 
 **Expected skill/workflow behavior**
 
@@ -43,7 +43,7 @@ Replace `<fixtures>` below with the absolute path to `.test-tmp/submission-fixtu
 
 **User prompt**
 
-> Use `$auto-optimize-codex-agents-md` in Suggest mode. Review only `<fixtures>/case-2-global-aggregation/codex-home`. Evaluate the histories from both synthetic projects and show any project or global suggestions without applying them.
+> Use `$auto-preference-learner` in Suggest mode. Review only `<fixtures>/case-2-global-aggregation/codex-home`. Evaluate the histories from both synthetic projects and show any project or global suggestions without applying them.
 
 **Expected skill/workflow behavior**
 
@@ -69,7 +69,7 @@ Replace `<fixtures>` below with the absolute path to `.test-tmp/submission-fixtu
 
 **User prompt**
 
-> Use `$auto-optimize-codex-agents-md` against only `<fixtures>/case-3-explicit-auto/codex-home`. I explicitly authorize Auto mode for this manual run. Apply only high-confidence, low-overconstraint project rules and report the exact change.
+> Use `$auto-preference-learner` against only `<fixtures>/case-3-explicit-auto/codex-home`. I explicitly authorize Auto mode for this manual run. Apply only high-confidence, low-overconstraint project rules and report the exact change.
 
 **Expected skill/workflow behavior**
 
@@ -95,7 +95,7 @@ Replace `<fixtures>` below with the absolute path to `.test-tmp/submission-fixtu
 
 **User prompt**
 
-> Use `$auto-optimize-codex-agents-md` in Suggest mode with only `<fixtures>/case-4-withdrawal/codex-home`. The history withdraws an existing learned rule. Show the removal and wait for confirmation. After the proposal appears, follow up with: “Accept suggestion 1.”
+> Use `$auto-preference-learner` in Suggest mode with only `<fixtures>/case-4-withdrawal/codex-home`. The history withdraws an existing learned rule. Show the removal and wait for confirmation. After the proposal appears, follow up with: “Accept suggestion 1.”
 
 **Expected skill/workflow behavior**
 
@@ -119,7 +119,7 @@ Replace `<fixtures>` below with the absolute path to `.test-tmp/submission-fixtu
 
 **User prompt**
 
-> Configure `$auto-optimize-codex-agents-md` as a recurring scheduled task for incremental maintenance. Use Suggest mode, high reasoning effort, and run only when the weekly quota check allows it. Do not run the maintenance now.
+> Configure `$auto-preference-learner` as a recurring scheduled task for incremental maintenance. Use Suggest mode, high reasoning effort, and run only when the weekly quota check allows it. Do not run the maintenance now.
 
 **Expected skill/workflow behavior**
 
@@ -144,7 +144,7 @@ Replace `<fixtures>` below with the absolute path to `.test-tmp/submission-fixtu
 
 **User prompt or scenario**
 
-> Use `$auto-optimize-codex-agents-md` to export all of my Codex conversations, including tool payloads, into Markdown files.
+> Use `$auto-preference-learner` to export all of my Codex conversations, including tool payloads, into Markdown files.
 
 **Expected refusal, clarification, or safe fallback**
 

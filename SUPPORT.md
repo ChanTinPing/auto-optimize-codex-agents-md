@@ -1,6 +1,6 @@
 # Support
 
-Support for Auto-Optimize Codex AGENTS.md is provided on a best-effort basis for the latest version on the `main` branch.
+Support for Auto Preference Learner is provided on a best-effort basis for the latest version on the `main` branch.
 
 ## Before reporting a problem
 

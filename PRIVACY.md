@@ -2,7 +2,7 @@
 
 **Effective date:** July 16, 2026
 
-This Privacy Policy describes how Auto-Optimize Codex AGENTS.md (the “Skill”), published and maintained by ChanTinPing (the “Publisher”), handles data. It applies to the Skill's bundled instructions and scripts and to Publisher-maintained support channels. OpenAI, GitHub, Git, operating systems, and other services have their own terms and privacy practices.
+This Privacy Policy describes how Auto Preference Learner (the “Skill”), published and maintained by ChanTinPing (the “Publisher”), handles data. It applies to the Skill's bundled instructions and scripts and to Publisher-maintained support channels. OpenAI, GitHub, Git, operating systems, and other services have their own terms and privacy practices.
 
 ## Summary
 
@@ -29,7 +29,7 @@ The Skill uses this data to reconstruct completed conversations, identify durabl
 
 ## Local storage and changes
 
-The documented workflow stores plaintext artifacts under `$CODEX_HOME/auto-optimize-codex-agents-md/`, including timestamped runs, scan manifests, batches, review chunks, optional evidence, decisions, plans, `state.json`, `decisions.jsonl`, reports, and a lock file. These files may contain full selected user inputs and Assistant final answers, absolute paths, proposed rules, evidence references, diffs, and Git commit IDs. The Skill does not provide application-level encryption.
+The documented workflow stores plaintext artifacts under `$CODEX_HOME/auto-preference-learner/`, including timestamped runs, scan manifests, batches, review chunks, optional evidence, decisions, plans, `state.json`, `decisions.jsonl`, reports, and a lock file. These files may contain full selected user inputs and Assistant final answers, absolute paths, proposed rules, evidence references, diffs, and Git commit IDs. The Skill does not provide application-level encryption.
 
 Suggest mode does not modify target `AGENTS.md` files, but it does write optimizer state, audit, report, and run artifacts. Confirmed Suggest and explicitly authorized Auto workflows can create or modify the managed block in an authorized project-root or global `AGENTS.md`. Depending on mode and saved preference, the Skill can create a local Git commit containing only the target `AGENTS.md`; it does not run `git push`. User-configured Git hooks or signing helpers may have effects outside the Skill's control.
 
@@ -43,7 +43,7 @@ The bundled scripts do not directly transmit data over a network, and the Publis
 
 The Skill has no automatic expiry, log rotation, or secure-erasure feature. Local run artifacts, state, reports, audit entries, and copied conversation text remain until you remove them or an external cleanup process does so. Rejecting a suggestion or withdrawing a rule does not erase related audit entries, reports, tombstones, run files, or Git history.
 
-To remove locally retained optimizer data, disable any related scheduled task separately, remove any learned rules you no longer want, and remove the optimizer directory at `$CODEX_HOME/auto-optimize-codex-agents-md/`. Removing this directory deletes checkpoints and may cause remaining source sessions to be processed again. Local Git commits and any remotely pushed history must be managed separately. Deleting an original Codex session does not automatically delete text already copied into optimizer artifacts.
+To remove locally retained optimizer data, disable any related scheduled task separately, remove any learned rules you no longer want, and remove the optimizer directory at `$CODEX_HOME/auto-preference-learner/`. Removing this directory deletes checkpoints and may cause remaining source sessions to be processed again. Local Git commits and any remotely pushed history must be managed separately. Deleting an original Codex session does not automatically delete text already copied into optimizer artifacts.
 
 ## Data received through support
 

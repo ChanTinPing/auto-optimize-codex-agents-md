@@ -1,4 +1,4 @@
 interface:
-  display_name: "Auto-Optimize Codex AGENTS.md"
-  short_description: "Turn Codex feedback into durable AGENTS.md rules"
-  default_prompt: "Use $auto-optimize-codex-agents-md to review recent Codex sessions and suggest durable AGENTS.md improvements."
+  display_name: "Auto Preference Learner"
+  short_description: "Learn and retain durable Codex preferences"
+  default_prompt: "Use $auto-preference-learner to review recent Codex sessions and suggest durable AGENTS.md improvements."

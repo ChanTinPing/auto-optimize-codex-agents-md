@@ -1,14 +1,14 @@
 {
-  "name": "auto-optimize-codex-agents-md",
-  "version": "1.0.0",
-  "description": "Turn durable Codex feedback into scoped, reviewable AGENTS.md improvements.",
+  "name": "auto-preference-learner",
+  "version": "1.0.1",
+  "description": "Learn durable Codex preferences from session feedback and retain them as scoped, reviewable AGENTS.md improvements.",
   "author": {
     "name": "Chan Tin Ping",
     "url": "https://github.com/ChanTinPing"
   },
   "homepage": "https://github.com/ChanTinPing/auto-optimize-codex-agents-md",
   "repository": "https://github.com/ChanTinPing/auto-optimize-codex-agents-md",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "keywords": [
     "codex",
     "agents-md",
@@ -17,8 +17,8 @@
   ],
   "skills": "./skills/",
   "interface": {
-    "displayName": "Auto-Optimize Codex AGENTS.md",
-    "shortDescription": "Turn Codex feedback into durable AGENTS.md rules",
+    "displayName": "Auto Preference Learner",
+    "shortDescription": "Learn and retain preferences",
     "longDescription": "When using Codex, we often see it miss things that feel obvious to us: it may run far more tests than necessary or make assumptions about a project that simply do not make sense. Correcting it helps in the current conversation, but that lesson is often forgotten as soon as a new conversation begins. A good harness should keep learning a user's taste, preferences, and working style from these interactions. This Skill does exactly that: it analyzes Codex conversation history, extracts durable preferences, and writes them to project-level or global AGENTS.md files, giving Codex a form of continuous learning. You can think of it as a stripped-down version of Hermes. The project intentionally limits itself to preferences suitable for AGENTS.md rather than trying to generate Skills. We do not want to lock an agent into particular ways of working, since such constraints can become liabilities as models improve. User preferences, by contrast, are not learned simply by upgrading the model and are therefore worth preserving.",
     "developerName": "Chan Tin Ping",
     "category": "Productivity",
@@ -31,6 +31,10 @@
     "termsOfServiceURL": "https://github.com/ChanTinPing/auto-optimize-codex-agents-md/blob/main/TERMS.md",
     "composerIcon": "./assets/logo.png",
     "logo": "./assets/logo.png",
-    "defaultPrompt": "Review my recent Codex sessions and suggest durable project or global AGENTS.md improvements."
+    "defaultPrompt": [
+      "Review recent Codex sessions and suggest durable AGENTS.md improvements.",
+      "Show learned preferences and evidence, then help me withdraw one safely.",
+      "Configure recurring preference maintenance in Suggest mode."
+    ]
   }
 }

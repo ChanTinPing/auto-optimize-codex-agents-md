@@ -1,8 +1,8 @@
 ---
-name: auto-optimize-codex-agents-md
+name: auto-preference-learner
 description: Mine local Codex active and archived session history for durable user corrections, dissatisfaction, quality standards, communication preferences, and safety boundaries; then suggest or explicitly auto-apply scoped changes to project-root or global AGENTS.md managed blocks. Use when asked to optimize Codex behavior memory, review or withdraw learned AGENTS.md rules, run incremental daily AGENTS memory maintenance, or configure that maintenance as a scheduled task. Do not use to mine workflow Skills or rewrite unowned AGENTS.md content.
 ---
-# Auto-Optimize Codex AGENTS.md
+# Auto Preference Learner
 
 Extract durable user corrections, acceptance standards, communication preferences, and safety boundaries from the user's active and archived Codex session history, then organize them as project or global rules in managed `AGENTS.md` blocks. Use user input and Assistant final answers as the primary material and produce a reviewable Suggest result first. Write only after the user accepts a Suggest or explicitly enables Auto mode; never promote Suggest to Auto. Do not use this Skill to export transcripts, mine workflow Skills, or modify unmanaged `AGENTS.md` content. When a broader request is legitimate but outside this Skill's purpose, explain the boundary and route that part to an appropriate capability instead of treating it as preference mining.
 
@@ -27,7 +27,7 @@ Extract durable user corrections, acceptance standards, communication preference
 
 ## Commands
 
-Run from the Skill root. On Windows systems with non-ASCII paths, use `python -X utf8`. Store run artifacts under `$CODEX_HOME/auto-optimize-codex-agents-md/runs/<timestamp>/`; store long-lived `state.json`, `decisions.jsonl`, and `reports/` beside `runs/`.
+Run from the Skill root. On Windows systems with non-ASCII paths, use `python -X utf8`. Store run artifacts under `$CODEX_HOME/auto-preference-learner/runs/<timestamp>/`; store long-lived `state.json`, `decisions.jsonl`, and `reports/` beside `runs/`.
 
 ```text
 python -X utf8 scripts/check_weekly_quota.py --output <run>/quota.json
@@ -65,11 +65,11 @@ Use `--all` only when the user explicitly accepts every proposed change. Follow 
 Manage only this block, preserving any UTF-8 BOM, newline style, and content outside it:
 
 ```md
-<!-- auto-optimize-codex-agents-md:start -->
+<!-- auto-preference-learner:start -->
 ## Learned working preferences
 
 - ...
-<!-- auto-optimize-codex-agents-md:end -->
+<!-- auto-preference-learner:end -->
 ```
 
 Stop if the target is a symbolic link, the markers are malformed, or the resulting file would exceed 32 KiB. A Git commit may contain only the target `AGENTS.md`. Do not checkpoint after a write or commit failure.
