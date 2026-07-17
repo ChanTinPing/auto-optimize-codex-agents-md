@@ -46,11 +46,16 @@ Codex normally detects Skill changes automatically. Restart Codex if the Skill d
 ## Repository layout
 
 ```text
+LICENSE                    MIT license
 SKILL.md                   Skill workflow and operating boundaries
 agents/openai.yaml         Codex UI metadata
 references/                Session schema, decision policy, and scheduling guidance
 scripts/                   Deterministic scanning, reconciliation, and application tools
 ```
+
+## License
+
+This project is licensed under the [MIT License](LICENSE). If this Skill helps you, attribution or a link back to this repository would be appreciated.
 
 ## Policies and support
 

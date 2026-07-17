@@ -2,11 +2,11 @@
 
 Effective date: July 16, 2026
 
-These terms govern use of Auto-Optimize Codex AGENTS.md (the “Skill”), published by ChanTinPing. By using the Skill, you agree to these terms. If you do not agree, do not use it.
+These terms describe Auto-Optimize Codex AGENTS.md (the “Skill”), published by ChanTinPing, and the Publisher-maintained listing and support channels. The Skill's source code and documentation are licensed under the MIT License as described below.
 
 ## Permission to use
 
-Subject to these terms, the publisher grants you a limited, non-exclusive, non-transferable, revocable permission to use the Skill for lawful purposes. No ownership rights are transferred, and no rights are granted beyond those expressly stated here.
+The Skill's source code and documentation are made available under the [MIT License](LICENSE). That license governs the rights to use, copy, modify, merge, publish, distribute, sublicense, and sell copies of the Skill. Nothing in these terms narrows the rights granted by the MIT License. If these terms conflict with the `LICENSE` file concerning those rights, the `LICENSE` file controls.
 
 ## Your responsibilities
 
@@ -22,7 +22,7 @@ Use requires Codex and may involve Git, Python, GitHub, or other third-party sof
 
 ## Availability and changes
 
-The Skill may be updated, suspended, or discontinued at any time. Features and compatibility may change without notice. Continued use after an update means you accept the then-current terms.
+The Publisher may update the Skill or suspend or discontinue its public listing or support at any time. Features and compatibility may change without notice. Each released version remains governed by the license included with that version; rights already granted under the MIT License are not retroactively revoked.
 
 ## Disclaimer
 
