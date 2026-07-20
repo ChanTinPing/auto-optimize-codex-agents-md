@@ -35,7 +35,13 @@ This Skill learns only durable Codex behavioral preferences. It does not provide
 
 ## Install
 
-Install it as a user-scoped Skill:
+### Plugin directory (recommended)
+
+Open the [Auto Preference Learner listing](https://chatgpt.com/plugins/plugins_6a59da1562288191af815040df33c649?q=Auto+Preference+Learner), or open the ChatGPT Plugin Directory and search for `Auto Preference Learner`. Open the result and select **Install plugin**. The plugin includes this Skill.
+
+### Manual Skill installation
+
+The original user-scoped Skill installation method remains available:
 
 ```bash
 git clone https://github.com/ChanTinPing/auto-optimize-codex-agents-md.git ~/.agents/skills/auto-preference-learner

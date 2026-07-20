@@ -35,7 +35,13 @@ Auto 适合定时执行无需逐项确认的增量维护，只有用户明确启
 
 ## 安装
 
-安装为用户级 Skill：
+### 插件目录（推荐）
+
+打开 [Auto Preference Learner 插件页面](https://chatgpt.com/plugins/plugins_6a59da1562288191af815040df33c649?q=Auto+Preference+Learner)，或者进入 ChatGPT 插件目录并搜索 `Auto Preference Learner`。打开搜索结果后点击**安装插件**。该插件已包含本 Skill。
+
+### 手动安装 Skill
+
+原来的用户级 Skill 安装方式继续保留：
 
 ```bash
 git clone https://github.com/ChanTinPing/auto-optimize-codex-agents-md.git ~/.agents/skills/auto-preference-learner
