@@ -1,6 +1,6 @@
 {
   "name": "auto-optimize-codex-agents-md",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Learn durable Codex preferences from session feedback and retain them as scoped, reviewable AGENTS.md improvements.",
   "author": {
     "name": "Chan Tin Ping",
@@ -32,9 +32,9 @@
     "composerIcon": "./assets/logo.png",
     "logo": "./assets/logo.png",
     "defaultPrompt": [
-      "Review recent Codex sessions and suggest durable AGENTS.md improvements.",
-      "Show learned preferences and evidence, then help me withdraw one safely.",
-      "Configure recurring preference maintenance in Suggest mode."
+      "Review my conversation history and suggest AGENTS.md improvements.",
+      "Review new conversation history and suggest AGENTS.md improvements.",
+      "Schedule a daily 10:00 AM task to mine new conversation history and suggest AGENTS.md improvements."
     ]
   }
 }

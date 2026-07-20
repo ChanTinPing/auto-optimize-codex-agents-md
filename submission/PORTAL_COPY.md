@@ -18,11 +18,9 @@ Use the following verbatim. It matches the first paragraph of `README.md`.
 
 ## Starter prompts
 
-1. Review my recent Codex sessions and suggest durable project or global `AGENTS.md` improvements. Do not apply anything until I confirm it.
-2. Show me the learned `AGENTS.md` rules, their evidence, and which projects they affect.
-3. Review new session history incrementally and suggest only preferences that are not already covered.
-4. Help me withdraw a learned rule and prevent older history from silently restoring it.
-5. Configure recurring incremental `AGENTS.md` maintenance in Suggest mode with the quota gate enabled.
+1. Review my conversation history and suggest `AGENTS.md` improvements.
+2. Review new conversation history and suggest `AGENTS.md` improvements.
+3. Schedule a daily 10:00 AM task to mine new conversation history and suggest `AGENTS.md` improvements.
 
 ## Test and setup notes
 
@@ -34,6 +32,10 @@ Use the following verbatim. It matches the first paragraph of `README.md`.
 ## Initial release notes
 
 Initial submission of a skills-only plugin that mines local Codex session history for durable behavioral preferences and proposes or explicitly applies scoped changes to managed project or global `AGENTS.md` blocks. The submitted Skill includes incremental session scanning, project/global candidate aggregation, evidence-backed Suggest review, explicitly authorized Auto mode, withdrawal/restoration handling, and bounded local state. Reviewer fixtures contain synthetic data only and require no credentials.
+
+## Version 1.0.2 release notes
+
+Replaced the three public starter prompts with direct, runnable actions for reviewing all conversation history, reviewing only new history, and scheduling a daily 10:00 AM incremental Suggest review.
 
 ## Portal choices that require the publisher
 
