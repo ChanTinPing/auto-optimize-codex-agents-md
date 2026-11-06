@@ -105,6 +105,14 @@ def commit_agents(project_root: Path, target: Path) -> dict[str, Any]:
         relative = target.resolve().relative_to(git_root.resolve())
     except ValueError:
         return {"committed": False, "reason": "target is outside detected Git root"}
+    ignored = subprocess.run(
+        ["git", "-C", str(git_root), "check-ignore", "-q", "--", str(relative)],
+        check=False,
+    )
+    if ignored.returncode == 0:
+        # The repository keeps AGENTS.md out of version control on purpose, so skip
+        # the commit instead of forcing the path in and failing the whole write.
+        return {"committed": False, "reason": "target is ignored by .gitignore"}
     index_snapshot = subprocess.run(
         ["git", "-C", str(git_root), "ls-files", "--stage", "-z", "--", str(relative)],
         capture_output=True,
