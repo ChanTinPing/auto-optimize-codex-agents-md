@@ -127,6 +127,49 @@ def normalized_effective_lines(text: str) -> set[str]:
     return result
 
 
+def companion_project_removals(
+    decisions: list[dict[str, Any]], allowed_roots: dict[str, Path]
+) -> list[dict[str, Any]]:
+    """Propose removing a project copy of a rule that is written to the global AGENTS.md.
+
+    A project block keeps its own copy when a candidate is promoted to a global rule, so the
+    same rule would live in two files. Only an identical copy is proposed for removal, so
+    project-specific wording is never lost.
+    """
+    extra: list[dict[str, Any]] = []
+    for decision in decisions:
+        if decision.get("target") != "global" or decision.get("action") != "add":
+            continue
+        instruction = str(decision.get("instruction") or "").strip()
+        if not instruction:
+            continue
+        wanted = normalize_text(instruction)
+        for root in allowed_roots.values():
+            target = root / "AGENTS.md"
+            if not target.exists():
+                continue
+            try:
+                _, text = read_agents(target)
+                rules, _ = parse_rules(text)
+            except (OSError, ReconcileError):
+                continue
+            for rule in rules:
+                if normalize_text(rule) != wanted:
+                    continue
+                extra.append(
+                    {
+                        "action": "remove",
+                        "target": "project",
+                        "project_root": str(root),
+                        "existing_instruction": rule,
+                        "evidence_refs": list(decision.get("evidence_refs") or []),
+                        "explanation": "the same rule is written to the global AGENTS.md, so this project copy would duplicate it; accept both changes together",
+                        "companion_of_decision_id": decision["decision_id"],
+                    }
+                )
+    return extra
+
+
 def apply_decisions(original: str, decisions: list[dict[str, Any]]) -> tuple[str, list[str]]:
     rules, bounds = parse_rules(original)
     notes: list[str] = []
@@ -606,6 +649,7 @@ def reconcile(decisions_value: Any, batch: dict[str, Any], home: Path, mode: str
     batch_record_ids = {str(value) for value in batch.get("record_ids", []) if str(value).strip()}
     plan_record_ids = sorted(edited_record_ids & batch_record_ids) if edited_acceptance else list(batch.get("record_ids", []))
     allowed_roots = {path_key(Path(value)): Path(value).expanduser().resolve() for value in batch.get("allowed_project_roots", [])}
+    decisions = ensure_decision_ids([*decisions, *companion_project_removals(decisions, allowed_roots)])
 
     grouped: dict[str, dict[str, Any]] = {}
     decision_errors: list[dict[str, str]] = [
