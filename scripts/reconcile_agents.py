@@ -692,6 +692,7 @@ def reconcile(decisions_value: Any, batch: dict[str, Any], home: Path, mode: str
                     if normalized_instruction in normalized_existing:
                         decision["action"] = "no-op"
                         decision["explanation"] = "existing or earlier batch rule already exactly covers this instruction"
+                        decision["neutralized_by_existing_rule"] = True
                     else:
                         normalized_existing.add(normalized_instruction)
             active_decisions = [decision for decision in group["decisions"] if decision.get("action") in MUTATING_ACTIONS]

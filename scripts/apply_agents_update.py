@@ -601,7 +601,7 @@ def validate_application(
             covered_records.update(records_by_ref.get(str(value), set()))
         if decision.get("action") == "no-op" and not str(decision.get("explanation") or "").strip():
             return f"no-op decision {decision.get('decision_id')} has no specific explanation"
-        if decision.get("action") not in MUTATING_ACTIONS:
+        if decision.get("action") not in MUTATING_ACTIONS and not decision.get("neutralized_by_existing_rule"):
             evidence_projects = {
                 scope for value in evidence_refs for scope in trusted_scope_sets.get(str(value), set())
             }
