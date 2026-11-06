@@ -10,10 +10,12 @@ from _common import atomic_write_json, load_json, write_json_output
 
 
 DEFAULT_MAX_RECORDS = 100
-DEFAULT_MAX_CHARS = 200_000
+DEFAULT_MAX_CHARS = 400_000
 
 
-def review_chunks(batch: dict[str, Any], max_records: int, max_chars: int) -> list[dict[str, Any]]:
+def review_chunks(
+    batch: dict[str, Any], max_records: int, max_chars: int
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     if max_records < 1 or max_chars < 1:
         raise ValueError("review chunk limits must be positive")
 
@@ -28,6 +30,7 @@ def review_chunks(batch: dict[str, Any], max_records: int, max_chars: int) -> li
         projects.setdefault(str(record.get("project_root") or ""), []).append(record)
 
     chunks: list[dict[str, Any]] = []
+    warnings: list[dict[str, Any]] = []
     for project_root, records in projects.items():
         current: list[dict[str, Any]] = []
         for record in records:
@@ -38,11 +41,44 @@ def review_chunks(batch: dict[str, Any], max_records: int, max_chars: int) -> li
                 candidate = [record]
                 payload = _payload(project_root, candidate, episodes_by_current)
             if _size(payload) > max_chars:
-                raise ValueError(f"record {record.get('record_id')} exceeds the review chunk character limit")
+                trimmed = _trim_record(project_root, record, episodes_by_current, max_chars)
+                if trimmed is None:
+                    raise ValueError(f"record {record.get('record_id')} exceeds the review chunk character limit")
+                warnings.append(
+                    {
+                        "record_id": record.get("record_id"),
+                        "project_root": project_root or None,
+                        "reason": "record exceeded the chunk character limit; its episode context was dropped",
+                        "characters_before": _size(payload),
+                        "characters_after": _size(trimmed),
+                    }
+                )
+                chunks.append(trimmed)
+                current = []
+                continue
             current = candidate
         if current:
             chunks.append(_payload(project_root, current, episodes_by_current))
-    return chunks
+    return chunks, warnings
+
+
+def _trim_record(
+    project_root: str,
+    record: dict[str, Any],
+    episodes_by_current: dict[str, list[dict[str, Any]]],
+    max_chars: int,
+) -> dict[str, Any] | None:
+    """Return a standalone chunk for one oversized record, or None if it still does not fit."""
+    record_id = str(record["record_id"])
+    payload = {
+        "project_root": project_root or None,
+        "record_ids": [record_id],
+        "records": [record],
+        "feedback_episode_candidates": [
+            {**episode, "context_records": []} for episode in episodes_by_current.get(record_id, [])
+        ],
+    }
+    return payload if _size(payload) <= max_chars else None
 
 
 def _payload(
@@ -76,7 +112,7 @@ def _size(value: dict[str, Any]) -> int:
 
 
 def write_chunks(batch_path: Path, output_dir: Path, max_records: int, max_chars: int) -> dict[str, Any]:
-    chunks = review_chunks(load_json(batch_path, {}), max_records, max_chars)
+    chunks, warnings = review_chunks(load_json(batch_path, {}), max_records, max_chars)
     output_dir.mkdir(parents=True, exist_ok=True)
     entries = []
     for number, chunk in enumerate(chunks, 1):
@@ -94,6 +130,7 @@ def write_chunks(batch_path: Path, output_dir: Path, max_records: int, max_chars
         "batch": str(batch_path),
         "record_ids": [record_id for entry in entries for record_id in entry["record_ids"]],
         "chunks": entries,
+        "warnings": warnings,
     }
     atomic_write_json(output_dir / "manifest.json", manifest)
     return manifest
